@@ -1,0 +1,116 @@
+.sticky-footer {
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 0px;
+  border-top: 1px solid rgba(210, 73, 191, 0.2);
+  z-index: 9999;
+  box-shadow: 0 -5px 15px rgba(210, 73, 191, 0.1);
+}
+
+.footer-tabs {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 0;
+}
+
+.footer-tabs .footer-icon {
+  padding: 8px 12px;
+  width: auto;
+  /* Allow auto width for better spacing */
+  min-width: 60px;
+  color: #888;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 15px;
+}
+
+.footer-icon span {
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.footer-icon .icon {
+  font-size: 22px;
+  margin-bottom: 2px;
+  transition: all 0.3s ease;
+}
+
+.footer-tabs .footer-icon.active {
+  background: transparent;
+  /* No background box for cleaner look */
+  border: none;
+  color: var(--a);
+}
+
+.footer-tabs .footer-icon.active .icon {
+  transform: translateY(-3px);
+  color: var(--a);
+  filter: drop-shadow(0 3px 5px rgba(210, 73, 191, 0.3));
+}
+
+.footer-tabs .footer-icon:hover {
+  color: var(--p);
+}
+
+/* sticky-mobile-container */
+.sticky-mobile-container {
+  display: none;
+}
+
+.sticky-mobile-container.active {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+.sticky-mobile-menu {
+  position: relative;
+  position: fixed;
+  background-color: var(--s);
+  height: auto;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transition: 0.8s all ease;
+  border-radius: 30px 30px 0 0;
+  padding-bottom: 30px;
+}
+
+.sticky-mobile-menu .cancel-icon {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.sticky-menus-ul {
+  padding: 20px !important;
+}
+
+.sticky-menus-ul li {
+  color: #fff;
+  margin: 20px 0;
+  cursor: pointer;
+}
+
+.sticky-menus-ul a {
+  color: #fff;
+}

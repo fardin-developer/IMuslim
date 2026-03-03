@@ -1,0 +1,66 @@
+.no-order-found {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--a);
+  color: var(--p);
+  padding: 10px;
+}
+.view-btn {
+  padding: 2px 10px;
+  background: var(--a);
+  color: var(--b);
+  outline: transparent;
+  border: transparent;
+}
+.loader-container {
+  height: 400px;
+}
+
+.user-order-container .tools {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.user-order-container .tools .form-fields {
+  flex: 1;
+  min-width: 200px;
+}
+
+.user-order-container .tools .form-fields:last-child {
+  flex: 0 0 auto;
+  min-width: auto;
+}
+
+.user-order-container .tools .form-fields input {
+  width: 100%;
+}
+
+.user-order-container .tools .form-fields button {
+  white-space: nowrap;
+}
+
+/* Make date input calendar icon visible */
+.user-order-container input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.user-order-container input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* For Firefox */
+.user-order-container input[type="date"] {
+  color-scheme: dark;
+}
+
+.user-order-container input[type="date"]::-moz-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+  opacity: 0.9;
+}

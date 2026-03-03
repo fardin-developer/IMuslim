@@ -1,0 +1,45 @@
+.about-container {
+  padding: 50px 20px;
+}
+.why-choose-mobi-heaven {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.why-choose-mobi-heaven h2 {
+  margin-bottom: 50px;
+  position: relative;
+}
+.yline::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3px;
+  width: 15%;
+  background-color: #ebef29;
+}
+.mobi-heaven {
+  width: 22%;
+}
+.mobi-heaven img {
+  width: 100%;
+}
+.mobi-heaven h4 {
+  font-weight: bold;
+  margin-top: 15px;
+  font-size: 28px;
+}
+
+@media screen and (max-width: 992px) {
+  .why-choose-mobi-heaven {
+    padding: 0 20px;
+  }
+  .mobi-heaven {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}

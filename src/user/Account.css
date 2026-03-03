@@ -1,0 +1,106 @@
+.user-accout-details label {
+  color: var(--a);
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+  font-size: 14px;
+}
+
+.user-accout-details h6 {
+  color: var(--a);
+}
+
+.user-accout-details .form-fields {
+  border: var(--border);
+  padding: 20px;
+  border-radius: 8px;
+  background: rgba(12, 21, 43, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.user-accout-details .form-fields:focus-within {
+  border-color: var(--a);
+  box-shadow: 0 0 0 3px rgba(37, 193, 155, 0.1);
+  background: rgba(12, 21, 43, 0.5);
+}
+
+.user-accout-details .form-control {
+  background-color: rgba(12, 21, 43, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: var(--d);
+  padding: 12px 16px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.user-accout-details .form-control:focus {
+  background-color: rgba(12, 21, 43, 0.8);
+  border-color: var(--a);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 193, 155, 0.15);
+  color: var(--d);
+}
+
+.user-accout-details .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+}
+
+.user-accout-details .form-control:hover:not(:focus) {
+  border-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(12, 21, 43, 0.7);
+}
+
+.user-accout-details .pass-input {
+  background-color: rgba(12, 21, 43, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--d);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.user-accout-details .pass-input:focus {
+  background-color: rgba(12, 21, 43, 0.8);
+  border-color: var(--a);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 193, 155, 0.15);
+  color: var(--d);
+}
+
+.user-accout-details .pass-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+}
+
+.user-accout-details .pass-input:hover:not(:focus) {
+  border-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(12, 21, 43, 0.7);
+}
+
+.logout-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border: var(--border);
+  border-radius: 8px;
+  color: var(--a);
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(12, 21, 43, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.logout-container:hover {
+  background-color: var(--s);
+  color: var(--p);
+  border-color: var(--s);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(106, 181, 246, 0.3);
+}

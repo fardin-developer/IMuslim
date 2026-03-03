@@ -1,0 +1,64 @@
+/* ============================ IMAGE MODAL CONTAINER  */
+.image-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  scale: 0;
+  transition: 0.3s all ease;
+  z-index: 9999;
+}
+.image-modal-container.active {
+  scale: 1;
+}
+.modal-black-bg {
+  background-color: black;
+  width: 50%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 0;
+  position: relative;
+}
+
+.image-modal-container .icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fff;
+  font-size: 50px;
+  cursor: pointer;
+}
+.image-modal-container .icon:hover {
+  color: #26bd68;
+}
+.display-image img {
+  width: 40%;
+  display: block;
+  margin: 0 auto;
+}
+.image-slides {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  color: #fff;
+  width: 100%;
+}
+.image-slides img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  cursor: pointer;
+  scale: 1;
+  transition: 0.3s all ease;
+}
+.image-slides img:hover {
+  scale: 1.05;
+}
+/* ============================ IMAGE MODAL CONTAINER ENDS */

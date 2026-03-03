@@ -1,0 +1,32 @@
+.text-container {
+  padding: 50px 100px;
+}
+.text-container p {
+  font-size: 18px;
+}
+
+@media screen and (max-width: 992px) {
+  .text-container {
+    padding: 50px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .text-container {
+    padding: 50px 30px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .text-container {
+    padding: 50px 20px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .text-container {
+    padding: 50px 10px;
+  }
+}
+@media screen and (max-width: 375px) {
+  .text-container {
+    padding: 50px 10px;
+  }
+}

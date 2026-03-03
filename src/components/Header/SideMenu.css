@@ -1,0 +1,202 @@
+.uimage {
+  border-radius: 100px;
+  margin-right: 10px;
+}
+
+.sidemenu-container {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 75%;
+  height: 100vh;
+  transition: all 0.3s ease;
+  z-index: 20;
+  z-index: 999999;
+  /* When hidden off-canvas, don't let it intercept clicks on desktop/header */
+  pointer-events: none;
+}
+
+@media screen and (min-width: 992px) {
+  .sidemenu-container {
+    width: 300px;
+  }
+}
+
+.sidemenu-container .logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.sidemenu-container .logo img {
+  width: 120px;
+}
+
+.sidemenu-container .logo .icon {
+  font-size: 35px;
+  color: #FDFBF7;
+}
+
+.sidemenu {
+  --w-bg: #271E18;
+  --w-bg-light: #4A3E34;
+  --w-gold: #d9ba96;
+  --w-sand: #ddb697;
+  --w-taupe: #967563;
+  --w-text: #FDFBF7;
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-bottom: 200px;
+  position: relative;
+  background: linear-gradient(180deg, var(--w-bg-light) 0%, var(--w-bg) 100%);
+  padding: 0 20px;
+  overflow-y: scroll;
+}
+
+.sidemenu .close-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 35px;
+  color: #fff;
+}
+
+.sidemenu ul li {
+  margin: 15px 0;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.sidemenu ul li .menuicon {
+  padding: 3px;
+  font-size: 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(217, 186, 150, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, var(--w-sand) 0%, var(--w-gold) 100%);
+  color: var(--w-bg) !important;
+}
+
+.sidemenu ul li a {
+  color: var(--w-text);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.ul .icon {
+  font-size: 25px;
+}
+
+.sidemenu .logout {
+  color: var(--w-sand);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.sidemenu .logout .icon {
+  margin-right: 10px;
+  font-size: 30px;
+  color: var(--w-gold);
+}
+
+.sidemenu .logout:hover {
+  color: var(--w-gold);
+  transform: translateX(5px);
+}
+
+.sidemenu-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+  object-fit: cover;
+  border: 3px solid #26bd68;
+  display: block;
+  margin: 0 auto;
+}
+
+.sidemenu-container.active {
+  left: 0;
+  pointer-events: auto;
+}
+
+.sidemenu-action-btn a {
+  color: #fff;
+  text-decoration: underline !important;
+  margin-top: 40px !important;
+}
+
+/* USER IMAGE  */
+.user {
+  color: #fff;
+  position: relative;
+}
+
+.user span {
+  font-size: 14px;
+}
+
+.user .icon {
+  color: #d9ba96;
+  font-size: 50px;
+  margin-right: 10px;
+}
+
+.user .pencil {
+  font-size: 14px;
+  color: #ddb697;
+  position: absolute;
+  top: 0;
+  left: 45px;
+}
+
+.signin {
+  background: linear-gradient(135deg, var(--w-gold) 0%, var(--w-sand) 100%);
+  color: var(--w-bg);
+  width: 100%;
+  padding: 12px;
+  outline: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.signin:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(217, 186, 150, 0.3);
+}
+
+/* Islamic separator */
+.islamic-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--w-taupe);
+  margin: 25px 0;
+  position: relative;
+  opacity: 0.6;
+}
+
+.islamic-divider::before {
+  content: '❖';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--w-gold);
+  padding: 0 10px;
+  font-size: 14px;
+}

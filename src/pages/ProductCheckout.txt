@@ -1,0 +1,326 @@
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { setUser } from "../redux/features/userSlice.js";
+import { message } from "antd";
+import Layout from "../components/Layout/Layout";
+import { useAuth } from "../context/AuthContext";
+import { orderAPI } from "../lib/api";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import "./ProductInfo.css";
+import "./Circle.css";
+import "./ProductPage.css";
+import IMAGES from "../img/image.js";
+import website from "../website/data.js";
+
+const ProductCheckout = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const targetRef = useRef(null);
+  const paymentRef = useRef(null);
+
+  const { user } = useSelector((state) => state.user);
+  const { balance, refreshBalance } = useAuth();
+  
+  // Get data from navigation state
+  const {
+    product,
+    amount,
+    packId,
+    productId,
+    selectedPrice: initialSelectedPrice,
+    finalAmount: initialFinalAmount,
+    userId: initialUserId,
+    zoneId: initialZoneId,
+    playerCheck: initialPlayerCheck,
+    packCategory: initialPackCategory,
+  } = location.state || {};
+
+  const [playerCheck] = useState(initialPlayerCheck || null);
+  const [mode, setMode] = useState("WALLET");
+  const [paymentOptions, setPaymentOptions] = useState("WALLET");
+  const [userId] = useState(initialUserId || "");
+  const [zoneId] = useState(initialZoneId || "");
+  const [selectedPrice, setSelectedPrice] = useState(initialSelectedPrice || null);
+  const [finalAmount, setFinalAmount] = useState(initialFinalAmount || null);
+  const [loading, setLoading] = useState(false);
+  const [age, setAge] = useState(false);
+  const [orderId, setOrderId] = useState(false);
+  const [validationStatus] = useState(location.state?.validationStatus || null); // Get from navigation state
+
+
+  useEffect(() => {
+    if (!product) {
+      message.error("No product data found. Please select a product first.");
+      navigate("/");
+      return;
+    }
+  }, []);
+
+
+
+
+  function checkPlaceOrder(e) {
+    if (!age) {
+      return message.error("Please check the box to continue");
+    }
+
+    if (product?.playerCheckBtn === "yes") {
+      if (validationStatus !== 'valid') {
+        return message.error(`Please validate your user details before proceeding`);
+      }
+    }
+
+    // Use new order API
+    if (mode === "UPI") {
+      handleUpiOrder(e);
+    } else {
+      handleWalletOrder(e);
+    }
+  }
+
+  const handleUpiOrder = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const response = await orderAPI.createOrderWithUPI({
+        diamondPackId: productId,
+        playerId: userId,
+        server: zoneId,
+        amount: finalAmount,
+        quantity: 1,
+        redirectUrl: `${window.location.origin}/payment-status`,
+      });
+      const res = await response.json();
+      // Check for paymentUrl in transaction object (new API structure)
+      const paymentUrl = res.transaction?.paymentUrl || res.data?.payment_url || res.data?.paymentUrl;
+      if (res.success && paymentUrl) {
+        // Get orderId from response for redirect after payment
+        const orderIdFromResponse = res.orderId || res.data?.orderId || res.order?._id || res.order?.orderId;
+        
+        // Store orderId in sessionStorage for redirect after payment
+        if (orderIdFromResponse) {
+          sessionStorage.setItem('pendingOrderId', orderIdFromResponse);
+        }
+        
+        message.success(res.message || "Redirecting to payment gateway...");
+        // Small delay to show success message before redirect
+        setTimeout(() => {
+          window.location.href = paymentUrl;
+        }, 500);
+      } else {
+        message.error(res.message || "Failed to create order");
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+      message.error("Failed to create order");
+      setLoading(false);
+    }
+  };
+
+  const handleWalletOrder = async (e) => {
+    if (parseFloat(balance) < parseFloat(selectedPrice)) {
+      return message.error("Balance is less for this order");
+    }
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const response = await orderAPI.createOrderWithWallet({
+        diamondPackId: productId,
+        playerId: userId,
+        server: zoneId,
+        quantity: 1,
+      });
+      const res = await response.json();
+      if (res.success) {
+        message.success(res.message || "Order placed successfully");
+        
+        // Refresh balance after successful order and wait for it to complete
+        await refreshBalance();
+        
+        // For wallet orders, navigate to order status page with orderId
+        const orderId = res.orderId || res.data?.orderId || res.order?._id || res.order?.orderId;
+        
+        // Small delay to ensure balance is updated before navigation
+        setTimeout(() => {
+          if (orderId) {
+            navigate(`/order-status?orderId=${orderId}`);
+          } else {
+            // Fallback if no orderId available
+            navigate('/order-status');
+          }
+        }, 500);
+      } else {
+        message.error(res.message || "Failed to place order");
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+      message.error("Failed to place order");
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Layout>
+      <div className="productpage">
+        <div className="pageheading">
+          <span onClick={() => navigate(-1)}>
+            <ArrowBackIosIcon className="icon" />
+            Go Back
+          </span>
+          <h5>Checkout</h5>
+        </div>
+
+        {/* SECTION FOUR PAYMENT */}
+        <div className="section section4" ref={paymentRef}>
+          <h6>Step 1: Select Payment Method</h6>
+           {product?.playerCheckBtn === "yes" && validationStatus !== 'valid' && (
+             <div className="validation-required-notice">
+               Please validate your user details on the product page before selecting a payment method.
+             </div>
+           )}
+           <div className={`payment ${product?.playerCheckBtn === "yes" && validationStatus !== 'valid' ? 'disabled' : ''}`}>
+            <div
+               className={`mode ${paymentOptions === "WALLET" && "active"} ${product?.playerCheckBtn === "yes" && validationStatus !== 'valid' ? 'disabled' : ''}`}
+              onClick={() => {
+                 if (product?.playerCheckBtn === "yes" && validationStatus !== 'valid') {
+                   message.warning("Please validate your user details first");
+                   return;
+                 }
+                setMode("WALLET");
+                setPaymentOptions("WALLET");
+              }}
+            >
+              <div className="modename">
+                <div
+                  className={`circle ${
+                    paymentOptions === "WALLET" && "active"
+                  }`}
+                ></div>
+                <div>
+                  <p className="walletheading">
+                    <img width="30px" src={IMAGES.wallet} alt="" />
+                    HV WALLET
+                  </p>
+                  <p className="userbalance">BALANCE: ₹{user ? parseFloat(balance || 0).toFixed(2) : 0}</p>
+                </div>
+              </div>
+              <div>
+                <img width="40px" src={IMAGES.coin} alt="" />
+              </div>
+            </div>
+            <div
+               className={`mode ${paymentOptions === "UPI" && "active"} ${product?.playerCheckBtn === "yes" && validationStatus !== 'valid' ? 'disabled' : ''}`}
+              onClick={() => {
+                 if (product?.playerCheckBtn === "yes" && validationStatus !== 'valid') {
+                   message.warning("Please validate your user details first");
+                   return;
+                 }
+                setMode("UPI");
+                setPaymentOptions("UPI");
+              }}
+            >
+              <div className="modename">
+                <div
+                  className={`circle ${paymentOptions === "UPI" && "active"}`}
+                ></div>
+                <div>
+                  <img width="60px" src={IMAGES.upi} alt="UPI" />
+                  <div className="d-flex gap-2 mt-2 justify-content-center align-items-center" style={{ flexWrap: "wrap" }}>
+                    <img width="40px" src={IMAGES.gpay} alt="GPay" style={{ borderRadius: "8px" }} />
+                    <img width="40px" src={IMAGES.phonepe} alt="PhonePe" style={{ borderRadius: "8px" }} />
+                    <img width="40px" src={IMAGES.paytm} alt="Paytm" style={{ borderRadius: "8px" }} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION FIVE PURCHASE CONFIRMATION */}
+        <div className="section section4">
+          <h6>Step 2: Purchase Confirmation</h6>
+          <div className="purchase-confirmation">
+            <div className="items">
+              <div className="item">Product</div>
+              <div className="item">{product?.name}</div>
+            </div>
+            {userId && (
+              <div className="items">
+                <div className="item">User Id</div>
+                <div className="item">{userId}</div>
+              </div>
+            )}
+            {zoneId && (
+              <div className="items">
+                <div className="item">Zone Id</div>
+                <div className="item">{zoneId}</div>
+              </div>
+            )}
+            {amount && (
+              <div className="items">
+                <div className="item">Package Details</div>
+                <div className="item">{amount}</div>
+              </div>
+            )}
+            <hr />
+            {selectedPrice && (
+              <div className="items">
+                <div className="item">Total Amount</div>
+                <div className="item">₹{selectedPrice}</div>
+              </div>
+            )}
+            {mode && (
+              <div className="items">
+                <div className="item">Payment Method</div>
+                <div className="item">{paymentOptions}</div>
+              </div>
+            )}
+            {user && (
+              <>
+                <div ref={targetRef} className="eighteenplus">
+                  <input type="checkbox" onClick={() => setAge(!age)} />
+                  <span>I, {user?.fname} confirms that I am 18+</span>
+                </div>
+                {!age && (
+                  <span className="note">
+                    Note: Please check the box to continue
+                  </span>
+                )}
+              </>
+            )}
+            {user ? (
+               <>
+              <button
+                className="p-check-btn mt-4"
+                onClick={checkPlaceOrder}
+                   disabled={loading || (product?.playerCheckBtn === "yes" && validationStatus !== 'valid')}
+              >
+                {loading ? "Processing..." : "Purchase Now"}
+              </button>
+                 {product?.playerCheckBtn === "yes" && validationStatus !== 'valid' && (
+                   <div className="validation-required-notice mt-2">
+                     Please validate your user details on the product page before proceeding with checkout.
+                   </div>
+                 )}
+               </>
+            ) : (
+              <button
+                className="p-check-btn mt-4"
+                onClick={() => navigate("/login")}
+              >
+                Login to Purchase
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    </Layout>
+  );
+};
+
+export default ProductCheckout;
+

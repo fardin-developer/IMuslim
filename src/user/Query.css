@@ -1,0 +1,39 @@
+.query-reply-container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.back-btnn {
+  cursor: pointer;
+  color: #000;
+}
+
+/* VIEW QUERY  */
+.view-query-container span {
+}
+.query-msg {
+  background: var(--b);
+  color: var(--d);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  align-self: flex-start;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  width: 60%;
+}
+.query-msg.active {
+  align-self: flex-end;
+  background: var(--a);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  color: var(--b);
+}
+.closedticket {
+  background-color: tomato;
+  width: 100%;
+  padding: 10px 5px;
+  text-align: center;
+  color: #fff;
+  border-radius: 10px;
+  margin-top: 20px;
+  opacity: 0.9;
+}

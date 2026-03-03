@@ -1,0 +1,8 @@
+node_modules/
+.cache/
+dist/
+build/
+build1/
+.env
+.htaccess
+.well-known

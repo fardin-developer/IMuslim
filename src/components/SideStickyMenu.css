@@ -1,0 +1,61 @@
+.side-sticky-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: rgba(37, 47, 69, 0.95);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.5px);
+  -webkit-backdrop-filter: blur(6.5px);
+  border: 1px solid rgba(37, 47, 69, 0.88);
+  color: white;
+  transition: width 0.3s;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 9999999;
+}
+.side-sticky-menu.collapsed {
+  width: 70px;
+}
+.side-sticky-menu.expanded {
+  width: 250px;
+}
+.menu-icon {
+  padding: 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.menu-icon .icon {
+  font-size: 30px;
+}
+.menu-icon .icon:hover {
+  color: var(--t);
+}
+.menu-items {
+  display: flex;
+  flex-direction: column;
+}
+.menu-items .icon {
+  font-size: 30px;
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.side-sticky-menu a {
+  color: #fff;
+}
+.menu-item:hover {
+  background-color: var(--t);
+}
+.menu-item.active {
+  background-color: var(--t);
+}
+.menu-item span {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #ddd;
+}

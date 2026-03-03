@@ -1,0 +1,907 @@
+/* ====================================================
+   ProductInfo.css  —  Islamic E-Commerce Product Page
+   Green & Gold Brand Identity
+   ==================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+    --pi-green-dark: #6a4f40;
+    --pi-green: #967563;
+    --pi-green-light: #b59480;
+    --pi-green-faint: #fdfbf7;
+    --pi-gold: #c9900c;
+    --pi-gold-light: #ddb697;
+    --pi-gold-faint: #f4eee6;
+    --pi-text: #1a1a2a;
+    --pi-text-muted: #666;
+    --pi-border: #e6d3bf;
+    --pi-white: #ffffff;
+    --pi-bg: #fdfbf7;
+    --pi-shadow-sm: 0 2px 12px rgba(150, 117, 99, 0.06);
+    --pi-shadow-md: 0 6px 28px rgba(150, 117, 99, 0.10);
+    --pi-shadow-green: 0 8px 32px rgba(150, 117, 99, 0.20);
+}
+
+/* ── Page Wrapper ── */
+.pi-page {
+    font-family: 'Inter', sans-serif;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 22px 16px 90px;
+    min-height: 100vh;
+    background: var(--pi-bg);
+}
+
+/* ── Back Button ── */
+.pi-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--pi-white);
+    border: 1px solid var(--pi-border);
+    color: var(--pi-green);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 24px;
+    padding: 8px 16px;
+    border-radius: 40px;
+    transition: all 0.2s ease;
+    box-shadow: var(--pi-shadow-sm);
+}
+
+.pi-back:hover {
+    background: var(--pi-green-faint);
+    border-color: var(--pi-green-light);
+    color: var(--pi-green-dark);
+    transform: translateX(-3px);
+}
+
+/* ── Two-column Grid ── */
+.pi-grid {
+    display: grid;
+    grid-template-columns: 1fr 390px;
+    gap: 22px;
+    align-items: start;
+}
+
+/* ─────────── CARDS ─────────── */
+.pi-card {
+    background: var(--pi-white);
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 16px;
+    box-shadow: var(--pi-shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.pi-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--pi-text);
+    margin: 0 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--pi-green-faint);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ─────────── HERO PRODUCT CARD ─────────── */
+.pi-product-card {
+    background: linear-gradient(135deg, var(--pi-green-dark) 0%, #7a5e4f 55%, #6a4f40 100%);
+    border-radius: 20px;
+    padding: 28px 26px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 22px;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--pi-shadow-green);
+}
+
+/* Geometric Islamic pattern overlay */
+.pi-product-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        repeating-linear-gradient(45deg,
+            rgba(201, 144, 12, 0.06) 0px,
+            rgba(201, 144, 12, 0.06) 1px,
+            transparent 1px,
+            transparent 20px),
+        repeating-linear-gradient(-45deg,
+            rgba(201, 144, 12, 0.06) 0px,
+            rgba(201, 144, 12, 0.06) 1px,
+            transparent 1px,
+            transparent 20px);
+    pointer-events: none;
+    border-radius: 20px;
+}
+
+/* Gold glow top-right */
+.pi-product-card::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, rgba(201, 144, 12, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Bismillah decoration */
+.pi-islamic-deco {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    font-size: 15px;
+    color: rgba(201, 144, 12, 0.55);
+    letter-spacing: 1px;
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    z-index: 1;
+}
+
+.pi-product-img-wrap {
+    width: 108px;
+    height: 108px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid rgba(201, 144, 12, 0.5);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+    z-index: 1;
+}
+
+.pi-product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pi-product-meta {
+    flex: 1;
+    min-width: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pi-product-name {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+    line-height: 1.25;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.pi-product-tagline {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.pi-badges-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.pi-type-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 700;
+    background: rgba(201, 144, 12, 0.22);
+    color: var(--pi-gold-light);
+    border: 1px solid rgba(201, 144, 12, 0.35);
+}
+
+.pi-halal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Hero "Buy Now" CTA on the product card */
+.pi-hero-buy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 11px 22px;
+    background: linear-gradient(135deg, var(--pi-green) 0%, var(--pi-green-dark) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 18px rgba(106, 79, 64, 0.45);
+    letter-spacing: 0.3px;
+    align-self: flex-start;
+}
+
+.pi-hero-buy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 26px rgba(106, 79, 64, 0.55);
+    background: linear-gradient(135deg, #a4816e, var(--pi-green));
+}
+
+/* ─────────── DESCRIPTION ─────────── */
+.pi-desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.85;
+    margin: 0;
+}
+
+/* ─────────── FEATURES LIST ─────────── */
+.pi-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pi-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.pi-feature-icon {
+    color: var(--pi-green-light) !important;
+    flex-shrink: 0;
+}
+
+/* ─────────── TRUST STRIP ─────────── */
+.pi-trust-row {
+    display: flex;
+    gap: 12px;
+}
+
+.pi-trust-item {
+    flex: 1;
+    background: var(--pi-white);
+    border-radius: 14px;
+    padding: 14px 12px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--pi-text);
+    box-shadow: var(--pi-shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.pi-trust-icon {
+    color: var(--pi-green) !important;
+    font-size: 22px !important;
+    flex-shrink: 0;
+}
+
+/* ════════ ORDER PANEL (right sticky) ════════ */
+.pi-right {
+    position: sticky;
+    top: 80px;
+}
+
+.pi-order-panel {
+    background: var(--pi-white);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: var(--pi-shadow-md);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Panel Header */
+.pi-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.pi-panel-icon {
+    font-size: 26px;
+    line-height: 1;
+}
+
+.pi-panel-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--pi-text);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.pi-panel-sub {
+    font-size: 11.5px;
+    color: var(--pi-green-light);
+    margin: 2px 0 0;
+    font-weight: 600;
+}
+
+/* Price Box */
+.pi-price-box {
+    background: linear-gradient(135deg, var(--pi-green-faint), #e8f7f0);
+    border: 1.5px solid rgba(26, 107, 66, 0.18);
+    border-radius: 14px;
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.pi-price-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--pi-green);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pi-price-value {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--pi-green-dark);
+    line-height: 1.1;
+    margin-top: 2px;
+}
+
+.pi-price-badge {
+    background: linear-gradient(135deg, var(--pi-green-light), var(--pi-green));
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    flex-shrink: 0;
+    align-self: center;
+}
+
+/* Large price in panel header */
+.pi-price-hero {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--pi-green-dark);
+    line-height: 1.05;
+    margin-top: 2px;
+}
+
+/* Divider */
+.pi-divider {
+    height: 1px;
+    background: var(--pi-border);
+    margin: 4px 0 20px;
+}
+
+/* ─────────── OPTIONAL FIELDS ─────────── */
+.pi-optional-fields {
+    transition: opacity 0.3s ease;
+}
+
+.pi-fields-locked {
+    opacity: 0.38;
+    pointer-events: none;
+    user-select: none;
+}
+
+.pi-optional-tag {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #aaa;
+    background: #f0f0f0;
+    border-radius: 4px;
+    padding: 1px 6px;
+    vertical-align: middle;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+/* ─────────── FORM FIELDS ─────────── */
+.pi-field {
+    margin-bottom: 16px;
+}
+
+.pi-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--pi-text);
+    margin-bottom: 7px;
+}
+
+.pi-req {
+    color: var(--pi-green-light);
+}
+
+.pi-input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--pi-border);
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--pi-text);
+    background: #fafafa;
+    transition: all 0.25s;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.pi-input:focus {
+    outline: none;
+    border-color: var(--pi-green-light);
+    background: var(--pi-white);
+    box-shadow: 0 0 0 3px rgba(150, 117, 99, 0.12);
+}
+
+.pi-input::placeholder {
+    color: #c0c0c0;
+}
+
+.pi-input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Phone Row */
+.pi-phone-row {
+    display: flex;
+    align-items: stretch;
+    border: 1.5px solid var(--pi-border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fafafa;
+    transition: all 0.25s;
+    margin-bottom: 10px;
+}
+
+.pi-phone-row:focus-within {
+    border-color: var(--pi-green-light);
+    background: var(--pi-white);
+    box-shadow: 0 0 0 3px rgba(150, 117, 99, 0.12);
+}
+
+.pi-prefix {
+    padding: 0 12px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #444;
+    background: #f0f5f2;
+    border-right: 1.5px solid var(--pi-border);
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    gap: 4px;
+}
+
+.pi-phone-inp {
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    flex: 1;
+    width: auto;
+    margin: 0;
+}
+
+.pi-phone-inp:focus {
+    outline: none;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.pi-hint {
+    font-size: 11.5px;
+    color: #bbb;
+    margin: 6px 0 0;
+}
+
+.pi-link {
+    color: var(--pi-green);
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+/* Full-width action button (under phone/OTP field) */
+.pi-action-btn {
+    background: var(--pi-green-dark);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 11px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
+}
+
+.pi-full-btn {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.pi-action-btn:hover:not(:disabled) {
+    background: var(--pi-green);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 16px rgba(150, 117, 99, 0.25);
+}
+
+.pi-action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.pi-action-verify {
+    background: linear-gradient(135deg, var(--pi-green-light), var(--pi-green));
+}
+
+.pi-action-verify:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--pi-green), var(--pi-green-dark));
+}
+
+/* Verified Box */
+.pi-verified-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 14px;
+    background: rgba(150, 117, 99, 0.07);
+    border: 1.5px solid rgba(150, 117, 99, 0.3);
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--pi-text);
+}
+
+.pi-verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--pi-green-light);
+    font-size: 12.5px;
+    font-weight: 800;
+}
+
+/* ── Animations ── */
+.pi-fade-in {
+    animation: piFadeIn 0.35s ease-in-out forwards;
+}
+
+@keyframes piFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── UPI Logos ── */
+.pi-upi-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8faf9;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+}
+
+.pi-upi-logo {
+    height: 22px;
+    object-fit: contain;
+}
+
+.pi-upi-app {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+/* ── Main Pay / Buy Now Button ── */
+.pi-pay-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--pi-green) 0%, var(--pi-green-dark) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 13px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 24px rgba(106, 79, 64, 0.38);
+    letter-spacing: 0.3px;
+    font-family: 'Inter', sans-serif;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.pi-pay-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(106, 79, 64, 0.52);
+    background: linear-gradient(135deg, #a4816e, var(--pi-green));
+}
+
+.pi-pay-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.pi-pay-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Spinner */
+.pi-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2.5px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.pi-secure-note {
+    text-align: center;
+    font-size: 11.5px;
+    color: #bbb;
+    margin: 10px 0 0;
+}
+
+/* ─────────── IMAGE GALLERY ─────────── */
+.pi-gallery {
+    background: var(--pi-white);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    box-shadow: var(--pi-shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Main large image */
+.pi-gallery-main {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #0d1a12;
+    overflow: hidden;
+}
+
+.pi-gallery-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.25s ease;
+}
+
+/* "2 / 3" counter */
+.pi-gallery-counter {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.52);
+    color: #fff;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    letter-spacing: 0.4px;
+}
+
+/* Thumbnail strip */
+.pi-gallery-thumbs {
+    display: flex;
+    gap: 8px;
+    padding: 12px 14px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--pi-green-light) transparent;
+    background: #f6faf8;
+    border-top: 1px solid var(--pi-border);
+}
+
+.pi-gallery-thumbs::-webkit-scrollbar {
+    height: 4px;
+}
+
+.pi-gallery-thumbs::-webkit-scrollbar-thumb {
+    background: var(--pi-green-light);
+    border-radius: 4px;
+}
+
+.pi-gallery-thumb {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2.5px solid transparent;
+    padding: 0;
+    cursor: pointer;
+    background: #ddd;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.pi-gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.pi-gallery-thumb:hover {
+    border-color: rgba(150, 117, 99, 0.45);
+    transform: scale(1.05);
+}
+
+.pi-gallery-thumb-active {
+    border-color: var(--pi-green-light) !important;
+    box-shadow: 0 0 0 2px rgba(150, 117, 99, 0.25);
+    transform: scale(1.05);
+}
+
+/* ─────────── SKELETON ─────────── */
+.pi-skeleton-card {
+    height: 165px;
+    background: linear-gradient(90deg, #e0f0e8 25%, #d0e8da 50%, #e0f0e8 75%);
+    background-size: 200% 100%;
+    animation: piShimmer 1.4s infinite;
+}
+
+.pi-skel-line {
+    height: 14px;
+    border-radius: 7px;
+    background: linear-gradient(90deg, #e0f0e8 25%, #d0e8da 50%, #e0f0e8 75%);
+    background-size: 200% 100%;
+    animation: piShimmer 1.4s infinite;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+@keyframes piShimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ─────────── IMPORTANT INFO ─────────── */
+.pi-important-card {
+    background: linear-gradient(135deg, #fdfbf7, #f4eee6);
+    border-color: rgba(150, 117, 99, 0.18);
+}
+
+.pi-important-card .pi-card-title {
+    color: #967563;
+    border-bottom-color: rgba(150, 117, 99, 0.15);
+}
+
+.pi-info-item {
+    align-items: flex-start !important;
+}
+
+.pi-info-dot {
+    flex-shrink: 0;
+    width: 7px;
+    height: 7px;
+    background: var(--pi-gold);
+    border-radius: 50%;
+    margin-top: 5px;
+}
+
+/* ════════ RESPONSIVE ════════ */
+@media (max-width: 860px) {
+    .pi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pi-right {
+        position: static;
+    }
+}
+
+@media (max-width: 580px) {
+    .pi-page {
+        padding: 14px 12px 70px;
+        background: #fdfbf7;
+    }
+
+    .pi-product-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 24px 18px 22px;
+        gap: 16px;
+    }
+
+    .pi-product-meta {
+        align-items: center;
+    }
+
+    .pi-islamic-deco {
+        top: 8px;
+        right: 12px;
+    }
+
+    .pi-hero-buy-btn {
+        align-self: center;
+    }
+
+    .pi-trust-row {
+        flex-direction: column;
+    }
+
+    .pi-pay-btn {
+        font-size: 15px;
+        padding: 14px;
+    }
+
+    .pi-price-value {
+        font-size: 22px;
+    }
+}

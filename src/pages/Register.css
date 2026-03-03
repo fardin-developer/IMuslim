@@ -1,0 +1,175 @@
+.register-container {
+  padding: 100px 20px;
+  background: var(--bg);
+}
+.register-container h6 {
+  color: #fff;
+}
+.register-container .form {
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 0px;
+  border-radius: 16px;
+  box-shadow: 0px 4px 20px gray;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+.form-fields input,
+.form-fields select,
+.form-fields textarea {
+  background-color: rgba(12, 21, 43, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  color: var(--d) !important;
+  font-size: 15px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: none !important;
+}
+
+.form-fields input:focus,
+.form-fields select:focus,
+.form-fields textarea:focus {
+  background-color: rgba(12, 21, 43, 0.8) !important;
+  border-color: var(--a) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(37, 193, 155, 0.15) !important;
+  color: var(--d) !important;
+}
+
+.form-fields input::placeholder,
+.form-fields textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+  opacity: 1 !important;
+}
+
+.form-fields input:hover:not(:focus),
+.form-fields select:hover:not(:focus),
+.form-fields textarea:hover:not(:focus) {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  background-color: rgba(12, 21, 43, 0.7) !important;
+}
+.register-form h1 {
+  font-weight: 400;
+  color: #000;
+}
+.register-btn {
+  width: 100%;
+  background-color: var(--a);
+  padding: 10px 15px;
+  color: var(--b);
+  font-weight: 600;
+  border-radius: 10px;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+.apply-code-btn {
+  padding: 8px 15px;
+  width: 180px;
+  background-color: #222f3e;
+  color: #fff;
+  outline: transparent;
+  border: transparent;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.hr-line {
+  position: relative;
+  margin-bottom: 20px;
+}
+.hr-line::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 0 !important;
+}
+.forgot-pass h6 {
+  color: #fff !important;
+}
+.forgot-pass a {
+  color: var(--a);
+  text-decoration: underline !important;
+}
+
+.addremainingfieldscontainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ppform {
+  padding: 10px;
+  background: #fff;
+  width: 40%;
+  border-radius: 10px;
+  p {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .registerbtn {
+    margin-top: 10px;
+    background: var(--bg);
+    padding: 10px;
+    color: #fff;
+    outline: transparent;
+    border: transparent;
+    border-radius: 10px;
+    width: 100%;
+  }
+}
+.or {
+  margin: 10px 0;
+  color: #fff;
+}
+@media screen and (max-width: 786px) {
+  .register-container {
+    padding: 100px 20px;
+    background: var(--bg);
+  }
+  .forgot-pass h6 {
+    font-size: 12px;
+  }
+  .ppform {
+    width: 90%;
+  }
+}
+
+/* Auth pages (Login/Register) - center form like professional sites */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* Register page also includes `hero-container` which has its own padding; override it */
+.auth-container.hero-container {
+  padding: 40px 20px;
+}
+
+.auth-container > .row {
+  width: 100%;
+  margin: 0;
+  justify-content: center;
+}
+
+@media screen and (max-width: 786px) {
+  .auth-container,
+  .auth-container.hero-container {
+    padding: 24px 16px;
+  }
+}

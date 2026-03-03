@@ -1,0 +1,24 @@
+.we-are {
+  padding: 0;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.we-logo,
+.we-content {
+  padding: 30px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.we-logo {
+  background-color: #26bd68;
+}
+
+@media screen and (max-width: 768px) {
+  .we-logo {
+    border-right: 0;
+  }
+}
