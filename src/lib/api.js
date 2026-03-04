@@ -145,6 +145,13 @@ export const orderAPI = {
       method: 'GET',
     });
   },
+
+  downloadDigitalOrder: async (token) => {
+    // This endpoint requires JWT auth; apiCall adds the Bearer token automatically
+    return apiCall(`/order/download/${token}`, {
+      method: 'GET',
+    });
+  },
 };
 
 // Transaction APIs
