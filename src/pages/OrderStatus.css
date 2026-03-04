@@ -1,0 +1,311 @@
+/* ====================================================
+   OrderStatus.css  —  Islamic E-Commerce Order Status Page
+   Green & Gold Brand Identity
+   ==================================================== */
+
+.os-page-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 16px;
+    min-height: 80vh;
+}
+
+.os-container {
+    background: var(--pi-white);
+    border-radius: 20px;
+    box-shadow: var(--pi-shadow-md);
+    padding: 32px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.os-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 24px;
+    border-bottom: 1px dashed var(--pi-border);
+}
+
+.os-status-icon {
+    font-size: 64px !important;
+    margin-bottom: 16px;
+}
+
+.os-status-title {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
+}
+
+.os-status-subtitle {
+    color: var(--pi-text-muted);
+    font-size: 15px;
+}
+
+/* Download Card */
+.os-download-card {
+    background: linear-gradient(135deg, #f8faf9 0%, #e8f7f0 100%);
+    border: 1.5px solid rgba(26, 107, 66, 0.18);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.os-download-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--pi-shadow-sm);
+}
+
+.os-download-icon {
+    color: var(--pi-green-dark);
+    font-size: 42px !important;
+    margin-bottom: 12px;
+}
+
+.os-download-title {
+    color: var(--pi-green-dark);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.os-download-desc {
+    color: var(--pi-text-muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.os-download-btn {
+    background: linear-gradient(135deg, var(--pi-green) 0%, var(--pi-green-dark) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(106, 79, 64, 0.3);
+}
+
+.os-download-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(106, 79, 64, 0.45);
+    background: linear-gradient(135deg, #a4816e, var(--pi-green));
+}
+
+.os-download-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Used/Error State for Download Card */
+.os-download-card.used {
+    background: #fff2f0;
+    border-color: #ffccc7;
+}
+
+.os-download-card.used .os-download-icon,
+.os-download-card.used .os-download-title {
+    color: #cf1322;
+}
+
+.os-download-card.used .os-download-desc {
+    color: #a8071a;
+    font-weight: 500;
+}
+
+/* Order Details Grid */
+.os-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--pi-bg);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.os-details-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--pi-text);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.os-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.os-detail-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.os-detail-label {
+    color: var(--pi-text-muted);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.os-detail-value {
+    color: var(--pi-text);
+    font-size: 14px;
+    font-weight: 700;
+    text-align: right;
+    word-break: break-word;
+    max-width: 60%;
+}
+
+.os-amount-row {
+    background: var(--pi-green-faint);
+    border-radius: 8px;
+    padding: 12px 16px;
+    border: 1px solid var(--pi-border);
+    margin-top: 8px;
+}
+
+.os-amount-label {
+    color: var(--pi-green-dark);
+    font-weight: 800;
+    font-size: 15px;
+}
+
+.os-amount-value {
+    color: var(--pi-green-dark);
+    font-weight: 900;
+    font-size: 18px;
+}
+
+/* Action Buttons */
+.os-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.os-btn-primary {
+    background: linear-gradient(135deg, var(--pi-green) 0%, var(--pi-green-dark) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(106, 79, 64, 0.3);
+    min-width: 180px;
+}
+
+.os-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(106, 79, 64, 0.45);
+}
+
+.os-btn-secondary {
+    background: var(--pi-white);
+    color: var(--pi-text);
+    border: 1.5px solid var(--pi-border);
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 180px;
+}
+
+.os-btn-secondary:hover {
+    background: #fdfbf7;
+    border-color: var(--pi-green-light);
+    color: var(--pi-green-dark);
+    transform: translateY(-2px);
+}
+
+/* Status Messages */
+.os-message {
+    margin-top: 24px;
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.os-message.processing {
+    background: #fff7e6;
+    border: 1px solid #ffd591;
+    color: #d48806;
+}
+
+.os-message.success {
+    background: #f6ffed;
+    border: 1px solid #b7eb8f;
+    color: #389e0d;
+}
+
+.os-message.error {
+    background: #fff2f0;
+    border: 1px solid #ffccc7;
+    color: #cf1322;
+}
+
+/* Loading/Error States */
+.os-state-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    text-align: center;
+}
+
+.os-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--pi-border);
+    border-top-color: var(--pi-green);
+    border-radius: 50%;
+    animation: os-spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes os-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 600px) {
+    .os-container {
+        padding: 20px;
+    }
+
+    .os-actions {
+        flex-direction: column;
+    }
+
+    .os-btn-primary,
+    .os-btn-secondary {
+        width: 100%;
+    }
+}
