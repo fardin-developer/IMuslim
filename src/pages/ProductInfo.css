@@ -312,6 +312,56 @@
     flex-shrink: 0;
 }
 
+/* ─────────── SADAQAH CARD ─────────── */
+.pi-sadaqah-card {
+    background: linear-gradient(to right, var(--pi-gold-faint), var(--pi-white));
+    border: 1px solid var(--pi-border);
+    border-left: 4px solid var(--pi-gold);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    box-shadow: var(--pi-shadow-sm);
+}
+
+.pi-sadaqah-icon-wrap {
+    width: 48px;
+    height: 48px;
+    background: var(--pi-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(201, 144, 12, 0.15);
+    border: 1px solid rgba(201, 144, 12, 0.2);
+}
+
+.pi-sadaqah-icon {
+    font-size: 24px;
+}
+
+.pi-sadaqah-text {
+    flex: 1;
+}
+
+.pi-sadaqah-title {
+    color: var(--pi-text);
+    font-size: 15px;
+    font-weight: 800;
+    margin: 0 0 4px;
+    letter-spacing: 0.2px;
+}
+
+.pi-sadaqah-desc {
+    color: var(--pi-text-muted);
+    font-size: 13.5px;
+    line-height: 1.4;
+    margin: 0;
+}
+
 /* ════════ ORDER PANEL (right sticky) ════════ */
 .pi-right {
     position: sticky;

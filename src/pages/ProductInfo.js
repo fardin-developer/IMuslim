@@ -282,20 +282,15 @@ const ProductInfo = () => {
             })()}
 
             {/* Sadaqah Highlight */}
-            <div className="pi-card" style={{
-              backgroundColor: "#f0fdfa",
-              borderLeft: "4px solid #0d9488",
-              padding: "16px",
-              display: "flex",
-              alignItems: "center",
-              gap: "12px"
-            }}>
-              <span style={{ fontSize: "24px" }}>🤲</span>
-              <div>
-                <strong style={{ color: "#0f766e", fontSize: "15px", display: "block", marginBottom: "4px" }}>Sadaqah Project</strong>
-                <span style={{ color: "#115e59", fontSize: "14px", lineHeight: "1.4" }}>
-                  15% of your purchase price is donated to help poor families.
-                </span>
+            <div className="pi-sadaqah-card">
+              <div className="pi-sadaqah-icon-wrap">
+                <span className="pi-sadaqah-icon">🤲</span>
+              </div>
+              <div className="pi-sadaqah-text">
+                <h3 className="pi-sadaqah-title">Sadaqah Project</h3>
+                <p className="pi-sadaqah-desc">
+                  <strong>15%</strong> of your purchase price is donated to help poor families.
+                </p>
               </div>
             </div>
 
