@@ -105,6 +105,23 @@
     transform: none;
 }
 
+/* Download Progress Bar */
+.os-download-progress {
+    width: 100%;
+    margin-top: 16px;
+    height: 6px;
+    background-color: rgba(26, 107, 66, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.os-download-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--pi-green), var(--pi-green-dark));
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
 /* Used/Error State for Download Card */
 .os-download-card.used {
     background: #fff2f0;

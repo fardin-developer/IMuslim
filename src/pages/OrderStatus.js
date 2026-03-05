@@ -18,6 +18,7 @@ const OrderStatus = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [downloading, setDownloading] = useState(false);
+  const [downloadProgress, setDownloadProgress] = useState(null);
 
   const fetchOrderStatus = async (orderId) => {
     if (!orderId) return;
@@ -71,13 +72,53 @@ const OrderStatus = () => {
   }, [searchParams]);
 
   // ── Download digital goods ──────────────────────────────────────────────────
+  const downloadWithProgress = (url, onProgress) => {
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", url);
+      xhr.responseType = "blob";
+
+      const authToken = localStorage.getItem("authToken") || localStorage.getItem("token");
+      if (authToken) {
+        xhr.setRequestHeader("Authorization", `Bearer ${authToken}`);
+      }
+
+      xhr.onprogress = (e) => {
+        if (e.lengthComputable) {
+          const percent = Math.round((e.loaded / e.total) * 100);
+          onProgress(percent);
+        } else {
+          onProgress(null);
+        }
+      };
+
+      xhr.onload = () => {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          const contentDisposition = xhr.getResponseHeader("content-disposition");
+          resolve({ blob: xhr.response, contentDisposition });
+        } else {
+          const reader = new FileReader();
+          reader.onload = function () {
+            try {
+              const errorData = JSON.parse(reader.result);
+              reject(new Error(errorData.error || errorData.message || "Download failed"));
+            } catch (_) {
+              reject(new Error("Download failed"));
+            }
+          };
+          reader.readAsText(xhr.response);
+        }
+      };
+
+      xhr.onerror = () => reject(new Error("Network error during download"));
+      xhr.send();
+    });
+  };
+
   const handleDownload = async () => {
     const downloadLink = orderData?.order?.digitalDownload?.downloadLink;
     if (!downloadLink) return;
 
-    // The download link is a full URL like:
-    // https://api.imuslim.in/api/v1/order/download/<token>
-    // We hit it via our authenticated apiCall wrapper to attach JWT.
     const token = downloadLink.split("/order/download/")[1];
     if (!token) {
       // Fallback: open the link directly in a new tab
@@ -85,28 +126,20 @@ const OrderStatus = () => {
       return;
     }
 
+    const API_BASE_URL = 'https://api.imuslim.in/api/v1';
+    const finalUrl = `${API_BASE_URL}/order/download/${token}`;
+
     try {
       setDownloading(true);
-      const response = await orderAPI.downloadDigitalOrder(token);
+      setDownloadProgress(0);
 
-      if (!response.ok) {
-        const errData = await response.json().catch(() => ({}));
-        const errorMsg = errData.error || errData.message || "Download failed. Please try again.";
-        message.error(errorMsg);
-
-        if (errorMsg === "This download link has already been used") {
-          const orderId =
-            searchParams.get("orderId") ||
-            searchParams.get("client_txn_id") ||
-            searchParams.get("clientTrxId");
-          if (orderId) fetchOrderStatus(orderId);
+      const { blob, contentDisposition } = await downloadWithProgress(
+        finalUrl,
+        (percent) => {
+          if (percent !== null) setDownloadProgress(percent);
         }
-        return;
-      }
+      );
 
-      // Stream the blob and trigger a browser download
-      const blob = await response.blob();
-      const contentDisposition = response.headers.get("content-disposition");
       let filename = "download";
       if (contentDisposition) {
         const match = contentDisposition.match(/filename="?([^"]+)"?/);
@@ -123,7 +156,7 @@ const OrderStatus = () => {
       window.URL.revokeObjectURL(url);
 
       message.success("Download started successfully!");
-      // Refresh so the UI reflects downloadUsed = true
+
       const orderId =
         searchParams.get("orderId") ||
         searchParams.get("client_txn_id") ||
@@ -131,9 +164,19 @@ const OrderStatus = () => {
       if (orderId) fetchOrderStatus(orderId);
     } catch (err) {
       console.error("Download error:", err);
-      message.error("Download failed. Please try again.");
+      const errorMsg = err.message || "Download failed. Please try again.";
+      message.error(errorMsg);
+
+      if (errorMsg === "This download link has already been used") {
+        const orderId =
+          searchParams.get("orderId") ||
+          searchParams.get("client_txn_id") ||
+          searchParams.get("clientTrxId");
+        if (orderId) fetchOrderStatus(orderId);
+      }
     } finally {
       setDownloading(false);
+      setDownloadProgress(null);
     }
   };
 
@@ -323,8 +366,20 @@ const OrderStatus = () => {
                   disabled={downloading}
                 >
                   <DownloadIcon style={{ fontSize: "18px" }} />
-                  {downloading ? "Preparing download…" : "Download Now"}
+                  {downloading
+                    ? downloadProgress != null
+                      ? `Downloading… ${downloadProgress}%`
+                      : "Downloading…"
+                    : "Download Now"}
                 </button>
+                {downloading && downloadProgress != null && (
+                  <div className="os-download-progress">
+                    <div
+                      className="os-download-progress-bar"
+                      style={{ width: `${downloadProgress}%` }}
+                    />
+                  </div>
+                )}
               </>
             )}
           </div>
