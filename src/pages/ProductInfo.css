@@ -67,6 +67,11 @@
     align-items: start;
 }
 
+.pi-left {
+    min-width: 0;
+    /* Prevents flex/grid children from causing page-level horizontal scroll */
+}
+
 /* ─────────── CARDS ─────────── */
 .pi-card {
     background: var(--pi-white);
