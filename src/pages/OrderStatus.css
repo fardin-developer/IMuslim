@@ -1,14 +1,14 @@
-/* ====================================================
-   OrderStatus.css  —  Islamic E-Commerce Order Status Page
-   Green & Gold Brand Identity
-   ==================================================== */
-
-.os-page-wrapper {
+/* ====================================================.os-page-wrapper {
     max-width: 800px;
     margin: 0 auto;
     padding: 40px 16px;
     min-height: 80vh;
 }
+   OrderStatus.css  —  Islamic E-Commerce Order Status Page
+   Green & Gold Brand Identity
+   ==================================================== */
+
+
 
 .os-container {
     background: var(--pi-white);

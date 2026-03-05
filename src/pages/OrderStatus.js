@@ -344,9 +344,6 @@ const OrderStatus = () => {
                 <p className="os-download-desc">
                   You have already downloaded this file. Contact support if you need another download.
                   <br />
-                  <span style={{ fontSize: "12px", marginTop: "4px", display: "inline-block" }}>
-                    Error: This download link has already been used.
-                  </span>
                 </p>
                 <button className="os-download-btn" disabled>
                   <DownloadIcon style={{ fontSize: "18px" }} />
