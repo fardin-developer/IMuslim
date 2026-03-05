@@ -285,7 +285,7 @@ const ProductInfo = () => {
             {productData.description && (
               <div className="pi-card">
                 <h2 className="pi-card-title">About this Product</h2>
-                <p className="pi-desc">{productData.description}</p>
+                <p className="pi-desc" style={{ whiteSpace: "pre-wrap" }}>{productData.description}</p>
               </div>
             )}
 
