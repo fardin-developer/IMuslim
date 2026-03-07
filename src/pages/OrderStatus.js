@@ -336,31 +336,48 @@ const OrderStatus = () => {
 
         {/* ── Digital download card (shown when applicable) ── */}
         {isCompleted && isDigital && (
-          <div className={`os-download-card ${hasDownload && downloadUsed ? "used" : ""}`}>
-            {hasDownload && downloadUsed ? (
+          <div className="os-download-card">
+            <DownloadIcon className="os-download-icon" style={{ color: '#1a73e8', fontSize: '48px', marginBottom: '10px' }} />
+            <h6 className="os-download-title">Your Digital Content is Ready</h6>
+            <p className="os-download-desc">
+              Access your purchased files instantly via Google Drive.
+            </p>
+
+            <a
+              href={order?.digitalDownload?.googleDriveLink || order?.googleDriveLink || "https://drive.google.com/drive/folders/1KmHrd1WJ8PXmZxWrVF9wAmcNSomMfCID?usp=sharing"}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "#fff",
+                backgroundColor: "#1a73e8",
+                fontWeight: "600",
+                textDecoration: "none",
+                fontSize: "15px",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
+                padding: "12px 24px",
+                borderRadius: "8px",
+                boxShadow: "0 2px 6px rgba(26, 115, 232, 0.35)",
+                transition: "all 0.2s ease",
+                marginTop: "4px"
+              }}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#1557b0"}
+              onMouseOut={(e) => e.currentTarget.style.backgroundColor = "#1a73e8"}
+            >
+              <DownloadIcon style={{ fontSize: "20px" }} />
+              Access via Google Drive
+            </a>
+
+            {/* Download button temporarily disabled — re-enable when direct download is stable
+            {hasDownload && !downloadUsed && (
               <>
-                <ErrorIcon className="os-download-icon" />
-                <h6 className="os-download-title">Download Link Used</h6>
-                <p className="os-download-desc">
-                  You have already downloaded this file. Contact support if you need another download.
-                  <br />
-                </p>
-                <button className="os-download-btn" disabled>
-                  <DownloadIcon style={{ fontSize: "18px" }} />
-                  Already Downloaded
-                </button>
-              </>
-            ) : hasDownload ? (
-              <>
-                <DownloadIcon className="os-download-icon" />
-                <h6 className="os-download-title">Your Digital Content is Ready</h6>
-                <p className="os-download-desc">
-                  Click the button below to download your purchased digital content.
-                </p>
                 <button
                   className="os-download-btn"
                   onClick={handleDownload}
                   disabled={downloading}
+                  style={{ marginTop: "12px" }}
                 >
                   <DownloadIcon style={{ fontSize: "18px" }} />
                   {downloading
@@ -378,53 +395,8 @@ const OrderStatus = () => {
                   </div>
                 )}
               </>
-            ) : null}
-
-            <div style={{
-              marginTop: hasDownload ? "20px" : "0",
-              paddingTop: hasDownload ? "15px" : "0",
-              borderTop: hasDownload ? "1px solid #eaeaea" : "none",
-              textAlign: "center",
-              display: "flex",
-              flexDirection: "column",
-              gap: "10px",
-              alignItems: "center"
-            }}>
-              {!hasDownload && (
-                <>
-                  <DownloadIcon className="os-download-icon" style={{ color: '#1890ff', fontSize: '48px', marginBottom: '10px' }} />
-                  <h6 className="os-download-title">Your Digital Content is Ready</h6>
-                </>
-              )}
-              <p style={{ margin: "0", color: "#666", fontSize: "14px" }}>
-                {hasDownload ? "Having trouble downloading? Try our alternate link:" : "Click below to access your files via Google Drive:"}
-              </p>
-              <a
-                href={order?.digitalDownload?.googleDriveLink || order?.googleDriveLink || "https://drive.google.com/drive/folders/1KmHrd1WJ8PXmZxWrVF9wAmcNSomMfCID?usp=sharing"}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: "#fff",
-                  backgroundColor: "#1a73e8",
-                  fontWeight: "500",
-                  textDecoration: "none",
-                  fontSize: "15px",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "8px",
-                  padding: "10px 20px",
-                  borderRadius: "8px",
-                  boxShadow: "0 2px 4px rgba(26, 115, 232, 0.2)",
-                  transition: "all 0.2s ease"
-                }}
-                onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#1557b0"}
-                onMouseOut={(e) => e.currentTarget.style.backgroundColor = "#1a73e8"}
-              >
-                <DownloadIcon style={{ fontSize: "20px" }} />
-                Access via Google Drive
-              </a>
-            </div>
+            )}
+            */}
           </div>
         )}
 
