@@ -12,6 +12,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import DownloadIcon from "@mui/icons-material/Download";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import IMAGES from "../img/image.js";
 import "./ProductInfo.css";
 
@@ -501,6 +502,17 @@ const ProductInfo = () => {
             </div>
           </div>
         </div>
+
+        {/* Floating WhatsApp Button */}
+        <a
+          href="https://wa.me/918320630709"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pi-whatsapp-float"
+          aria-label="Contact us on WhatsApp"
+        >
+          <WhatsAppIcon sx={{ fontSize: 34 }} />
+        </a>
       </div>
     </Layout>
   );
