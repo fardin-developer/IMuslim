@@ -356,7 +356,7 @@ const ProductInfo = () => {
           </div>
 
           {/* ═══════════ RIGHT – Order Panel ═══════════ */}
-          <div className="pi-right" ref={orderPanelRef}>
+          <div className="pi-right" ref={orderPanelRef} id="buy-section">
             <div className="pi-order-panel">
 
               {/* Price header */}
@@ -486,22 +486,40 @@ const ProductInfo = () => {
                 <img src={IMAGES.paytm} alt="Paytm" className="pi-upi-app" />
               </div>
 
-              {/* ── BUY NOW ── always at bottom */}
-              <button
-                className="pi-pay-btn"
-                onClick={handlePay}
-                disabled={paying || (createUserWithOtp ? !phoneVerified : phone.length !== 10) || name.trim().length === 0}
-              >
-                {paying
-                  ? <><span className="pi-spinner" /> Processing...</>
-                  : <><ShoppingCartCheckoutIcon sx={{ fontSize: 20 }} /> Buy Now — ₹{productData.price}</>
-                }
-              </button>
+              {/* Removed the static BUY NOW btn */}
               <p className="pi-secure-note">🔒 100% Secure · No hidden charges</p>
 
             </div>
           </div>
         </div>
+
+        {/* Floating Buy Now Button (Mobile Only) */}
+        {(() => {
+          const isValidToPay = createUserWithOtp
+            ? (phoneVerified && name.trim().length > 0)
+            : (phone.length === 10 && name.trim().length > 0);
+
+          if (!isValidToPay) {
+            return (
+              <a href="#buy-section" className="pi-floating-buy-btn">
+                <ShoppingCartCheckoutIcon sx={{ fontSize: 20 }} /> Buy Now — ₹{productData.price}
+              </a>
+            );
+          }
+
+          return (
+            <button
+              className="pi-floating-buy-btn pi-floating-pay-btn"
+              onClick={handlePay}
+              disabled={paying}
+            >
+              {paying
+                ? <><span className="pi-spinner" /> Processing...</>
+                : <><ShoppingCartCheckoutIcon sx={{ fontSize: 20 }} /> Pay Now — ₹{productData.price}</>
+              }
+            </button>
+          );
+        })()}
 
         {/* Floating WhatsApp Button */}
         <a
