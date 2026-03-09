@@ -486,7 +486,17 @@ const ProductInfo = () => {
                 <img src={IMAGES.paytm} alt="Paytm" className="pi-upi-app" />
               </div>
 
-              {/* Removed the static BUY NOW btn */}
+              {/* ── BUY NOW ── desktop/tablet only */}
+              <button
+                className="pi-pay-btn pi-pay-btn-desktop"
+                onClick={handlePay}
+                disabled={paying || (createUserWithOtp ? !phoneVerified : phone.length !== 10) || name.trim().length === 0}
+              >
+                {paying
+                  ? <><span className="pi-spinner" /> Processing...</>
+                  : <><ShoppingCartCheckoutIcon sx={{ fontSize: 20 }} /> Buy Now — ₹{productData.price}</>
+                }
+              </button>
               <p className="pi-secure-note">🔒 100% Secure · No hidden charges</p>
 
             </div>

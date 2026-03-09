@@ -5,6 +5,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
+/* ── Global overflow guard ── */
+html,
+body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
 /* ── CSS Variables ── */
 :root {
     --pi-green-dark: #6a4f40;
@@ -28,10 +35,13 @@
 .pi-page {
     font-family: 'Inter', sans-serif;
     max-width: 1080px;
+    width: 100%;
     margin: 0 auto;
     padding: 22px 16px 90px;
     min-height: 100vh;
     background: var(--pi-bg);
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 /* ── Back Button ── */
@@ -62,14 +72,16 @@
 /* ── Two-column Grid ── */
 .pi-grid {
     display: grid;
-    grid-template-columns: 1fr 390px;
+    grid-template-columns: 1fr minmax(0, 390px);
     gap: 22px;
     align-items: start;
+    width: 100%;
 }
 
-.pi-left {
+.pi-left,
+.pi-right {
     min-width: 0;
-    /* Prevents flex/grid children from causing page-level horizontal scroll */
+    max-width: 100%;
 }
 
 /* ─────────── CARDS ─────────── */
@@ -80,6 +92,9 @@
     margin-bottom: 16px;
     box-shadow: var(--pi-shadow-sm);
     border: 1px solid rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .pi-card-title {
@@ -374,6 +389,9 @@
     padding: 24px;
     box-shadow: var(--pi-shadow-md);
     border: 1px solid rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 /* Panel Header */
@@ -994,6 +1012,10 @@
 }
 
 @media (max-width: 580px) {
+    .pi-pay-btn-desktop {
+        display: none;
+    }
+
     .pi-whatsapp-float {
         width: 52px;
         height: 52px;
