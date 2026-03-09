@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import { message } from "antd";
 import { orderAPI } from "../lib/api";
@@ -13,6 +13,7 @@ import "./OrderStatus.css";
 
 const OrderStatus = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
   const [orderData, setOrderData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -43,6 +44,22 @@ const OrderStatus = () => {
       if (res.success && res.order) {
         setOrderData(res);
         setError(null);
+
+        // ── Redirect to status-specific URL so FB Meta Pixel can track conversion ──
+        const currentPath = window.location.pathname;
+        if (currentPath === "/order-status") {
+          const orderStatus = res.order?.status?.toLowerCase();
+          let targetPath;
+          if (["completed", "success"].includes(orderStatus)) {
+            targetPath = "/order-status/success";
+          } else if (["failed", "error"].includes(orderStatus)) {
+            targetPath = "/order-status/failure";
+          } else {
+            targetPath = "/order-status/pending";
+          }
+          // Preserve all query params in the new URL
+          navigate({ pathname: targetPath, search: window.location.search }, { replace: true });
+        }
       } else {
         const errorMessage = res.message || "Order not found";
         setError(errorMessage);
