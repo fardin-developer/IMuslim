@@ -21,6 +21,9 @@ const OrderStatus = () => {
   const [downloading, setDownloading] = useState(false);
   const [downloadProgress, setDownloadProgress] = useState(null);
 
+  // true only on the base /order-status route — acts as a silent redirect gateway
+  const isGateway = location.pathname === "/order-status";
+
   const fetchOrderStatus = async (orderId) => {
     if (!orderId) return;
 
@@ -33,6 +36,11 @@ const OrderStatus = () => {
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
         const errorMessage = errorData.message || "Failed to fetch order status";
+        // On gateway, send straight to failure page instead of showing error UI
+        if (isGateway) {
+          navigate({ pathname: "/order-status/failure", search: window.location.search }, { replace: true });
+          return;
+        }
         setError(errorMessage);
         message.error(errorMessage);
         setLoading(false);
@@ -46,8 +54,7 @@ const OrderStatus = () => {
         setError(null);
 
         // ── Redirect to status-specific URL so FB Meta Pixel can track conversion ──
-        const currentPath = window.location.pathname;
-        if (currentPath === "/order-status") {
+        if (isGateway) {
           const orderStatus = res.order?.status?.toLowerCase();
           let targetPath;
           if (["completed", "success"].includes(orderStatus)) {
@@ -59,14 +66,23 @@ const OrderStatus = () => {
           }
           // Preserve all query params in the new URL
           navigate({ pathname: targetPath, search: window.location.search }, { replace: true });
+          return;
         }
       } else {
         const errorMessage = res.message || "Order not found";
+        if (isGateway) {
+          navigate({ pathname: "/order-status/failure", search: window.location.search }, { replace: true });
+          return;
+        }
         setError(errorMessage);
         message.error(errorMessage);
       }
     } catch (err) {
       console.error("Error fetching order status:", err);
+      if (isGateway) {
+        navigate({ pathname: "/order-status/failure", search: window.location.search }, { replace: true });
+        return;
+      }
       const errorMessage = "Failed to fetch order status";
       setError(errorMessage);
       message.error(errorMessage);
@@ -278,7 +294,30 @@ const OrderStatus = () => {
     </Layout>
   );
 
-  // ── Loading ─────────────────────────────────────────────────────────────────
+  // ── Gateway screen (base /order-status): just spinner, no order UI ──────────
+  if (isGateway) {
+    return (
+      <div style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "var(--pi-bg, #f8f9fa)",
+        gap: "20px"
+      }}>
+        <div className="os-spinner" style={{ width: "52px", height: "52px" }}></div>
+        <p style={{ color: "var(--pi-text-muted, #888)", fontSize: "16px", fontWeight: "500", margin: 0 }}>
+          Verifying your payment…
+        </p>
+        <p style={{ color: "var(--pi-text-muted, #bbb)", fontSize: "13px", margin: 0 }}>
+          Please do not close this page
+        </p>
+      </div>
+    );
+  }
+
+  // ── Loading (on sub-routes) ─────────────────────────────────────────────────
   if (loading && !orderData) {
     return (
       <PageWrapper>
@@ -289,6 +328,7 @@ const OrderStatus = () => {
       </PageWrapper>
     );
   }
+
 
   // ── Error ───────────────────────────────────────────────────────────────────
   if (error && !orderData) {
