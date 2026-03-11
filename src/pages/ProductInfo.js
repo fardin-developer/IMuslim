@@ -21,6 +21,15 @@ const ProductInfo = () => {
   const navigate = useNavigate();
   const orderPanelRef = useRef(null);
 
+  /* ── Capture affiliate code from URL and persist to localStorage ── */
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const affFromUrl = params.get("aff");
+    if (affFromUrl) {
+      localStorage.setItem("affiliateCode", affFromUrl);
+    }
+  }, []);
+
   const [productData, setProductData] = useState(null);
   const [productMeta, setProductMeta] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -112,6 +121,7 @@ const ProductInfo = () => {
 
     try {
       setPaying(true);
+      const affiliateCode = localStorage.getItem("affiliateCode") || "";
       const payload = {
         productDetailsId: productData._id,
         quantity: 1,
@@ -120,6 +130,7 @@ const ProductInfo = () => {
         name: name.trim(),
         email: email.trim(),
         ...(createUserWithOtp ? { otp } : {}),
+        ...(affiliateCode ? { aff: affiliateCode } : {}),
       };
 
       const res = await orderAPI.createProductUPIOrder(payload);
@@ -255,6 +266,11 @@ const ProductInfo = () => {
                       className="pi-gallery-main-img"
                       onError={(e) => { e.target.src = fallback; }}
                     />
+                    {isDigital && (
+                      <span className="pi-gallery-digital-badge">
+                        <BoltIcon sx={{ fontSize: 13 }} /> Digital Product
+                      </span>
+                    )}
                     {logos.length > 1 && (
                       <span className="pi-gallery-counter">{activeImg + 1} / {logos.length}</span>
                     )}

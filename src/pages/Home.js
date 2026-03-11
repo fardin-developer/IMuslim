@@ -61,6 +61,15 @@ const Home = () => {
   //   }
   // }
 
+  /* ── Capture affiliate code from URL and persist to localStorage ── */
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const affFromUrl = params.get("aff");
+    if (affFromUrl) {
+      localStorage.setItem("affiliateCode", affFromUrl);
+    }
+  }, []);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       getUserData();
