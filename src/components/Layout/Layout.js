@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
+// import Footer from "../Footer/Footer";
 import "./Layout.css";
 
 const Layout = ({ children }) => {
@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
     <React.Fragment>
       {!isAuthPage && <Header />}
       <div className="body">{children}</div>
-      {!isAuthPage && <Footer />}
+      {/* {!isAuthPage && <Footer />} */}
     </React.Fragment>
   );
 };
