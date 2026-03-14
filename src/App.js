@@ -6,7 +6,8 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import OTP from "./pages/OTP";
 import ForgotPass from "./pages/ForgotPass";
-// import About from "./pages/About";
+import About from "./pages/About";
+import ContactUs from "./pages/ContactUs";
 import Dashboard from "./user/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
@@ -196,6 +197,8 @@ function App() {
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/refund-policy" element={<RefundPolicy />} />
+            <Route path="/about-us" element={<About />} />
+            <Route path="/contact-us" element={<ContactUs />} />
             {/* ======================== USER PAGES =============================== */}
             {/* ========== EMAIL VERIFY */}
             <Route
