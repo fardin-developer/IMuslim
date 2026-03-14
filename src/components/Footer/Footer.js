@@ -42,10 +42,10 @@ const Footer = () => {
               <div className="footer-social-section">
                 <h6 className="footer-social-heading">Connect With Us</h6>
                 <div className="footer-socials">
-                  <Link target="_blank" to="https://www.facebook.com/profile.php?id=61574096732822" className="social-link">
+                  {/* <Link target="_blank" to="https://www.facebook.com/profile.php?id=61574096732822" className="social-link">
                     <img src={IMAGES.facebook} alt="Facebook" />
-                  </Link>
-                  <Link target="_blank" to="https://www.instagram.com/islamcicmlstore" className="social-link">
+                  </Link> */}
+                  <Link target="_blank" to="https://www.instagram.com/imuslimmm" className="social-link">
                     <img src={IMAGES.instagram} alt="Instagram" />
                   </Link>
                   <Link target="_blank" to="https://wa.me/9401410882" className="social-link">
