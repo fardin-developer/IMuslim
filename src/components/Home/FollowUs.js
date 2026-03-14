@@ -19,7 +19,7 @@ const FollowUs = () => {
           <img src={IMAGES.instagram} alt="" />
         </Link>
 
-        <Link target="_blank" to="https://wa.me/8320630709">
+        <Link target="_blank" to="https://wa.me/9401410882">
           <img src={IMAGES.whatsapp} alt="" />
         </Link>
 

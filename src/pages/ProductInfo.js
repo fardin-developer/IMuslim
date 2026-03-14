@@ -549,7 +549,7 @@ const ProductInfo = () => {
 
         {/* Floating WhatsApp Button */}
         <a
-          href="https://wa.me/918320630709"
+          href="https://wa.me/919401410882"
           target="_blank"
           rel="noopener noreferrer"
           className="pi-whatsapp-float"
